@@ -102,7 +102,7 @@ class LineChart(MatplotlibViz):
         # Initialize a pandas subplot
         # and assign the figure and axis
         # to variables
-        fig, ax = plt.subplots(figsize=(12, 10))
+        fig, ax = plt.subplots(figsize=(10, 6))
         
         # call the .plot method for the
         # cumulative counts dataframe
@@ -165,8 +165,11 @@ class BarChart(MatplotlibViz):
             pred = risk[0]
         
         # Initialize a matplotlib subplot
-        fig, ax = plt.subplots(figsize=(12, 10))
+        fig, ax = plt.subplots(figsize=(10, 6))
         
+        # Ensure the y-axis label is visible
+        ax.set_ylabel("Risk")
+
         # Run the following code unchanged
         ax.barh([''], [pred])
         ax.set_xlim(0, 1)
@@ -176,6 +179,10 @@ class BarChart(MatplotlibViz):
         # to the `.set_axis_styling`
         # method
         self.set_axis_styling(ax, bordercolor='black', fontcolor='black')
+
+        # Add a numeric label for the predicted risk value
+        label_x = min(pred + 0.02, 0.98)
+        ax.text(label_x, 0, f"{pred:.2f}", va='center', ha='left', color='black', fontsize=12)
         
  
 # Create a subclass of combined_components/CombinedComponent
